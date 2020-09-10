@@ -21,6 +21,10 @@ componentDidMount (){
 
      }
 
+     handleDelete = () => {
+        alert("are you sure?");
+      };
+
      render() {
         return (
           <div>
@@ -32,7 +36,8 @@ componentDidMount (){
            <p >Name:{item.name}</p>
            <p>Age:{item.age}</p>
            <p>Email:{item.email}</p>
-           <button className="delete">Delete Friend</button>
+         
+           <button className="delete"onClick={this.handleDelete}>Delete Friend</button>
        </div>
           )
           }

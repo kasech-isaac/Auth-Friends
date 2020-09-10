@@ -4,7 +4,6 @@ import { axiosWithAuth } from "../util/axiosWithAuth";
 class FriendAdd extends React.Component {
     state = {
         friend: {
-          id: "",
           name: "",
           age: "",
           email: ""
@@ -22,26 +21,28 @@ class FriendAdd extends React.Component {
 
       submitHandler=e=>{
         e.preventDefault();
-        axiosWithAuth().post('/api/friends')
-        this.setState({
-            id: "",
-          name: "",
-          age: "",
-          email: ""
-     });
+        axiosWithAuth()
+        .post('/api/friends',this.state.friend)
+        .then(res=> 
+            {
+                this.setState({
+                  name: "",
+                  age: "",
+                  email: ""
+             });
+             console.log(res)
+             
+            }
+            )
+            .catch(err=> console.log(err))
+
+       
     };
     render() {
         return (
           <div>
             <form onSubmit={this.submitHandler}>
-              {
-                <input
-                type="id"
-                name="id"
-                placeholder="id"
-                value={this.state.friend.id}
-                onChange={this.handleChange}
-              /> }
+              
               <input
                 type="name"
                 name="name"
